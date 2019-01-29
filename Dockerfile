@@ -12,6 +12,6 @@ WORKDIR /Rest_app
 RUN pip install -r requirements.txt
 
 EXPOSE 5000
-COPY entrypoint.sh entrypoint.sh
 
-CMD ["./entrypoint.sh"]
+CMD ["python", "init_db.py"]
+CMD ["python", "app.py"]
