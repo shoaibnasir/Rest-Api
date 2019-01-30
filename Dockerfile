@@ -13,5 +13,4 @@ RUN pip install -r requirements.txt
 
 EXPOSE 5000
 
-CMD ["python", "init_db.py"]
-CMD ["python", "app.py"]
+ENTRYPOINT ["./entrypoint.sh"]
