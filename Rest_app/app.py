@@ -2,7 +2,10 @@ from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 import os
-
+'''
+curl -XGET -H "Content-type: application/json" "http://0.0.0.0:5000/message"
+curl -v -XPOST -H "Content-type: application/json" -d '{"property":"11","message":"body"}' "http://0.0.0.0:5000/message"
+'''
 # Init app
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
