@@ -10,7 +10,7 @@ WORKDIR /Rest_app
 
 # Install requirements
 RUN pip install -r requirements.txt
-RUN [“chmod”, “+x”, "./entrypoint.sh”]
+RUN ["chmod", "+x", "./entrypoint.sh"]
 
 EXPOSE 5000
 
