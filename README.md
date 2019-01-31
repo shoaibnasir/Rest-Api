@@ -1,10 +1,10 @@
 # Rest-Api
 This is a simple python Flask based Rest Application which allows the users to achieve the following objectives
-1 - Submit / Post messages
-2 - List all the received messages
-3 - Retrieve a specific message on demand, and determine whether is it a palindrome
-4 - Delete specific messaged
-5 - Update a specific message
+1. Submit / Post messages
+2. List all the received messages
+3. Retrieve a specific message on demand, and determine whether is it a palindrome
+4. Delete specific messaged
+5. Update a specific message
 
 The Api service uses the python Flask framework and uses Flask-Sqlalchemy plugin to create a lightweight database
 to save the received messages
@@ -20,14 +20,54 @@ on a host or from inside the docker container
 
 Docker needs to be installed in order to perform the following operations
 
-1 - 
+1 - Clone this repository
+```bash
+https://github.com/shoaibnasir/Rest-Api.git
+```
 
+2 - Build a docker image
+  
+```bash
+cd Rest-Api/
+docker build --tag <tag>
+
+Example:
+  docker build --tag snasir/rest_app:latest .
+``` 
+
+3 - Boot up a docker container
+
+```bash
+docker run --name rest_app -d -p 5000:5000 snasir/rest_app:latest
+```
+
+4 - Verify that the container is running and the port 5000 is exposed
+
+```bash
+docker ps -a | grep rest_app
+
+Example:
+[snasir:~/Rest-Api] docker ps -a | grep rest
+5021f8557bc6        snasir/rest_app:latest   "./entrypoint.sh"        12 minutes ago      Up 12 minutes   0.0.0.0:5000->5000/tcp   rest_app
+
+```
+
+5 - Login to the rest_app container to execute the cli commands
+
+```bash
+[snasir:~/Rest-Api] docker exec -it -u 0 rest_app /bin/bash
+root@5021f8557bc6:/Rest_app# 
+
+root@5021f8557bc6:/Rest_app# python Msgcli.py --help
+Usage: Msgcli.py [OPTIONS] COMMAND [ARGS]...
+
+```
 ## Command Line Tool
 
 The Msgcli tool uses the Rest-app to make use of the above-mentioned features
 The Msgcli.py can be found in the /Rest_app directory
 
-Usage Instructions:
+#### Usage Instructions:
 
 ```bash
 Msgcli --help
@@ -47,7 +87,7 @@ Commands:
   send-msg    Send a Message with a "Property" and "Message" header
 
 ```
-send-msg option
+#### send-msg option
 ```bash
 
 Msgcli send-msg --help
@@ -65,7 +105,7 @@ Example:
    Msgcli send-msg --property SampleProperty --message SampleMsg
 ```
 
-get-msgs option
+#### get-msgs option
 ```bash
 Msgcli get-msgs --help
 Usage: Msgcli.py get-msgs [OPTIONS]
@@ -81,7 +121,7 @@ Options:
    Msgcli get-msgs --id <id>
 ```
 
-delete-msg option
+#### delete-msg option
 ```bash
 Msgcli delete-msg --help
 Usage: Msgcli.py delete-msg [OPTIONS]
